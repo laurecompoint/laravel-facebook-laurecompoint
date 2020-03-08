@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
+
 use Illuminate\Http\Request;
 use App\User;
 use Image;
@@ -69,6 +70,26 @@ public function destroy(User $user)
     $user->delete();
     return redirect()->route('login')->with('alertdeleteuser', "Votre compte à bien été suprime" );
 }
+
+public function search(User $user, Request $request){
+  
+        $search = $request->search;
+        $message = "No user found!";
+   
+    
+        if($search != ""){
+            $user = User::where('name', 'LIKE', $search.'%')->paginate(10);
+    
+           
+            return view('searchuser', ['userfound' => $user, 'search' => $search] );
+           
+        }
+        else{
+            return view('searchuser', ['message' => $message, 'search' => $search] );
+        }
+
+}
+
     
 
 

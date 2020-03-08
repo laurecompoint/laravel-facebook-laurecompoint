@@ -8,6 +8,10 @@ use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
+    public function scopeSearch($q) 
+{ 
+    return empty(request()->search) ? $q : $q->where('name', 'like', '%'.request()->search.'%'); 
+} 
     use Notifiable;
 
     /**

@@ -19,6 +19,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
      <!-- Styles -->
      <style>
 
@@ -56,6 +57,16 @@ footer { position: absolute; bottom: 8%; font-size: 12px;}
                 <a class="navbar-brand" href="{{ url('/') }}" style="color:#4267b2">
                 <i class="fa fa-facebook-square" style="font-size:24px"></i>  {{ config('app.name', 'Laravel') }} 
                 </a>
+            
+                <form method="POST" action="{{URL::to('/search')}}" role="search">
+                {{csrf_field()}}
+                <div class="input-group mb-3">
+                <input type="text" class="form-control mt-3"  name="search" placeholder="Search...">
+                <div class="input-group-append mt-3">
+                    <button class="btn buttonsearch" style="border-color: #4267b2;" type="submit"><i class='fas fa-search' style='font-size:15px'></i></button>
+                </div>
+                </div>
+                </form>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
