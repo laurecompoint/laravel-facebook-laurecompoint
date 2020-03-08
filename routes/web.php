@@ -20,7 +20,7 @@ Route::post('compteuser-avatar', 'UserController@destroyavatar')->middleware('au
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/timiline', 'PostController@index');
+Route::get('/timeline', 'PostController@index');
 Route::post('/add-posts', 'PostController@create')->name('posts.create')->middleware('auth');
 
 Route::get('/{username}', 'ProfileController@show')->name('profile');

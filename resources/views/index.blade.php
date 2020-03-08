@@ -43,7 +43,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8 mb-3">
-        @foreach ( $posts as $post )
+        @foreach ( $user->posts()->get() as $post  )
             <div class="card mt-5">
                 <div class="card-header bg-white">
 

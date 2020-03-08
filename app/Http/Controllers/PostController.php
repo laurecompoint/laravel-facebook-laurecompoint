@@ -15,11 +15,11 @@ class PostController extends Controller
      */
     public function index(Post $post)
     {
-         $posts = $post->orderBy('id', 'DESC')->paginate(4);
+         //$posts = $post->orderBy('id', 'DESC')->paginate(4);
         
          if (Auth::check()) {
            
-            return view('index', [ 'posts' => $posts ]);
+            return view('index', [ 'user' => Auth::user() ]);
         }
         else{
             return view('welcome');
