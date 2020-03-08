@@ -19,3 +19,6 @@ Route::post('compteuser', 'UserController@destroy')->middleware('auth')->name('c
 Route::post('compteuser-avatar', 'UserController@destroyavatar')->middleware('auth')->name('compte.destroyavatar');
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/timiline', 'PostController@index');
+Route::post('/add-posts', 'PostController@create')->name('posts.create')->middleware('auth');

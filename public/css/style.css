@@ -2,3 +2,10 @@
 background-color: #4267b2;
 color: white;
 }
+.color{
+    background-color: #4267b2;
+    margin-left: 20px;
+}
+.inputpost{
+    border: none;
+}
