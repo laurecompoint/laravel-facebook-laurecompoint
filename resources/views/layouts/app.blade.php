@@ -104,6 +104,9 @@ footer { position: absolute; bottom: 8%; font-size: 12px;}
                                     <a class="dropdown-item" href="/account">
                                         Account
                                     </a>
+                                    <a class="dropdown-item" href="/{{ Auth::user()->name }}">
+                                        Profil
+                                    </a>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>

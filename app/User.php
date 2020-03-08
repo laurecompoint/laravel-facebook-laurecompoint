@@ -8,10 +8,7 @@ use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-    public function scopeSearch($q) 
-{ 
-    return empty(request()->search) ? $q : $q->where('name', 'like', '%'.request()->search.'%'); 
-} 
+    
     use Notifiable;
 
     /**
@@ -40,4 +37,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function posts()
+   {
+        return $this->hasMany('App\Post', 'user_id', 'id')->orderBy('id', 'desc');
+   }
 }
