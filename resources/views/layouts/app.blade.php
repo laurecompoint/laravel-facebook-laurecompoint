@@ -90,6 +90,12 @@ footer { position: absolute; bottom: 8%; font-size: 12px;}
                                 </li>
                             @endif
                         @else
+                            <li class="nav-item">
+                                    <a class="nav-link" href="friends"  style="color:#4267b2">Friends</a>
+                            </li>
+                            <li class="nav-item">
+                                    <a class="nav-link" href="timeline"  style="color:#4267b2">TimeLine</a>
+                            </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown"  style="color:#4267b2" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>

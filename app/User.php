@@ -38,8 +38,13 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function posts()
-   {
+    public function posts(){
         return $this->hasMany('App\Post', 'user_id', 'id')->orderBy('id', 'desc');
-   }
+    }
+    public function friends(){
+    return $this->belongsToMany('App\User', 'friends', 'friend_user_id', 'user_id')->withTimestamps();
+    }
+    public function isFriends(User $user){
+        return !is_null($this->friends()->where('user_id', $user->id)->first());
+    }
 }

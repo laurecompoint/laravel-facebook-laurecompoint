@@ -90,6 +90,28 @@ public function search(User $user, Request $request){
 
 }
 
+public function addfriends($username)
+{
+    
+    $user = User::where('name', $username)->firstOrFail();
+
+    $id = Auth::id();
+    $me = User::find($id);
+    $me->friends()->attach($user->id);
+    return redirect('/' . $username);
+}
+
+public function removefriends($username)
+{
+   
+    $user = User::where('name', $username)->firstOrFail();
+
+    $id = Auth::id();
+    $me = User::find($id);
+    $me->friends()->detach($user->id);
+    return redirect('/' . $username);
+}
+
     
 
 

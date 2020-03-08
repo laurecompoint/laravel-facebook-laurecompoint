@@ -22,7 +22,7 @@
                     </a>
                     @else
                     <a href="{{ url('/delete-friends/' . $userprofil->name) }}">
-                        <button type="button" class="btn btn-default text-danger col-12 mb-3">Remove friend</button>
+                        <button type="button" class="btn border-danger text-danger col-12 mb-3">Remove friend</button>
                        
                     </a>
                     @endif
@@ -32,6 +32,28 @@
  
   <div class="card-body">
     <h5 class="card-title"> @ {{ $userprofil->name  }} friends</h5>
+
+    @forelse ($listoffriends as $friends)
+                   
+                        <div class="row m-auto border border-dark border-left-0 border-right-0 border-top-0 pb-2">
+
+                        <img src="img/{{ $friends->avatar }}"  style="border-radius: 10px 100px / 120px; width: 40%;" class=""/>
+
+                                <a href="{{ url('/' . $friends->username) }}" class="text-info col-6">
+                                    <h4 class="list-group-item-heading">{{ $friends->name }}</h4>
+                                    <strong class="list-group-item-text text-info ">{{ $friends->created_at->diffForHumans() }}</strong>
+                                </a>
+                               
+                        </div>
+                  
+                    @empty
+                    <div class="mt-3 text-center  col-12 d-flex flex-column justify-content-center align-items-center align-content-center">
+   
+                        <h5 class="mt-5">No friends yet</h5>
+                        <img src="/img/nofriends.png" class="w-50">
+
+                    </div>
+                    @endforelse
    
   </div>
 </div>
@@ -47,7 +69,7 @@
           
                   <div class="row m-auto border border-dark border-left-0 border-right-0 border-top-0 col-11">
                     <div class="col-1 mt-3">
-                        <img src="img/{{$post->user->avatar}}" class="" style="width: 40PX"/>
+                        <img src="img/{{$post->user->avatar}}"  style="border-radius: 10px 100px / 120px; width: 100%;" class=""/>
                     </div>
 
                     <div class=" col-10 mt-3">

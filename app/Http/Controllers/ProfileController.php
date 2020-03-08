@@ -20,12 +20,13 @@ class ProfileController extends Controller
             $tweet_count = $userprofil->posts()->get()->count();
             
             $is_edit_profile = (Auth::id() == $userprofil->id);
-            $button_add_friend = "en cour";
-          
+            $button_add_friend = !$is_edit_profile && !$me->isFriends($userprofil);
+            $listoffriends = $userprofil->friends()->orderBy('name')->get();
           
           
             return view('profile', [
                 'tweet_count' => $tweet_count,
+                'listoffriends' => $listoffriends,
                 'is_edit_profile' => $is_edit_profile, 
                 'button_add_friend' => $button_add_friend, 
                 'userprofil' => $userprofil, 

@@ -50,7 +50,7 @@
                
                   <div class="row m-auto">
                     <div class="col-1">
-                        <img src="img/{{$post->user->avatar}}" class="ml-1" style="width: 40PX"/>
+                        <img src="img/{{$post->user->avatar}}" class="ml-1" style="width: 40PX; border-radius: 10px 100px / 120px;"/>
                     </div>
 
                     <div class="ml-2 col-10 row ">

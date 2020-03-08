@@ -24,3 +24,5 @@ Route::get('/timeline', 'PostController@index');
 Route::post('/add-posts', 'PostController@create')->name('posts.create')->middleware('auth');
 
 Route::get('/{username}', 'ProfileController@show')->name('profile');
+Route::get('/add-friends/{username}', 'UserController@addfriends')->middleware('auth');
+Route::get('/remove-friends/{username}', 'UserController@removefriends')->middleware('auth');
