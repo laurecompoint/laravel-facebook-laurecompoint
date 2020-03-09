@@ -9,9 +9,20 @@
 <h3>But du projet</h3>
 <p>Réalisation de facebook avec laravel</p>
 <h3>Etape du projet</h3>
-<h4>Creation du projet avec laravel</h4>
+<h4>Création Projet avec laravel  <a href="https://travis-ci.org/laravel/framework"> 
+<img align="center" src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" alt="Build Status" width="150"></a></h4>
 <p>Création du projet avec la commande : new laravel nom du projet -auth</p>
-<h4>Création de la base de donnée</h4>
+
+<h4>Création de la base de donnée
+
+
+<a href="https://www.mamp.info/fr/"> 
+<img align="center" src="https://www.mamp.info/images/icons/mamp.png" alt="Build Status" width="40"></a>
+
+
+
+<img align="center" src="https://c7.uihere.com/icons/210/340/991/mysql-5fba0f1cddb0c0db446ec9f49b1b5d31.png" alt="Build Status" width="40">
+</h4>
 <p>Création de la base avec mamp puis connexion a cette base de données depuis le fichier .env.</p>
 
 <h4>Migration - Seeder</h4>
@@ -30,3 +41,8 @@ Création des seeders pour remplir la table des users avec des vraies infos ( r�
 <p>Pour, la page profil, qui permet aux users de voir leurs posts, leurs amis, mais aussi de pouvoir voir les pages de profil des autres users, et de les ajouter en amis</p> <p>Mais leur demande devra etre validé par l'utilisateur en question.</p>
 <p>On retrouve aussi un partie rechercher, pour chercher les utilisateur plus facilement</p>
 <p>Ensuite, il y aura la page amis pour voir les amis des users, ainsi que leur demande en cours d'amis...</p>
+
+<h3>Lancer le projet</h3>
+<p># Cloner le repo</p>
+<p># Lancer les migrations et seeders</p>
+<p># Lancer le projet avec la commande php artisan serve</p>
