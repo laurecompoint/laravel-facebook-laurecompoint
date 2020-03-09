@@ -17,7 +17,7 @@
                 @forelse($userfound as $user)
                 <div class="row mt-4 ml-2">
                
-                <img src="img/{{$user->avatar}}" class="w-25"/>
+                <img src="img/{{$user->avatar}}" style="border-radius: 10px 100px / 120px;" class="w-25"/>
               
                 <div class="col-6 mr-5">
                 <h5>{{ $user->name}}</h5>

@@ -26,3 +26,6 @@ Route::post('/add-posts', 'PostController@create')->name('posts.create')->middle
 Route::get('/{username}', 'ProfileController@show')->name('profile');
 Route::get('/add-friends/{username}', 'UserController@addfriends')->middleware('auth');
 Route::get('/remove-friends/{username}', 'UserController@removefriends')->middleware('auth');
+
+Route::get('/like/{post}', 'PostController@like')->middleware('auth');
+Route::get('/remove-like/{post}', 'PostController@removelike')->middleware('auth');

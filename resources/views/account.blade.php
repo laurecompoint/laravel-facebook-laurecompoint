@@ -59,7 +59,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-10 col-md-offset-1">
-                        <img src="img/{{ $user->avatar }}" style="width:150px; height:150px; float:left; margin-right:25px;">
+                        <img src="img/{{ $user->avatar }}" style="width:150px; height:150px; float:left; margin-right:25px;border-radius: 10px 100px / 120px;">
                         @if (Auth::user()->avatar === 'avatar.png')
                             <label class="text-success">Update Profile Avatar : </label>
                             <input type="file" name="avatar" value="avatar.png">

@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\User;
 use App\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -17,9 +17,15 @@ class PostController extends Controller
     {
          //$posts = $post->orderBy('id', 'DESC')->paginate(4);
         
+        
          if (Auth::check()) {
+          
            
-            return view('index', [ 'user' => Auth::user() ]);
+            return view('index', [ 
+                'user' => Auth::user() ,
+               
+                
+                ]);
         }
         else{
             return view('welcome');
@@ -49,6 +55,8 @@ class PostController extends Controller
            return redirect()->back()->with('alertcreate', "Votre post  : $post->post a bien été crée" );
         }
     }
+
+    
 
     /**
      * Store a newly created resource in storage.
@@ -110,5 +118,28 @@ class PostController extends Controller
             $post->delete();
             return redirect()->back()->with('alertdelete', "Votre post  :   $post->post  a bien été suprimer" );
         }
+    }
+
+    public function like($post)
+    {
+        
+        $post = Post::where('post', $post)->firstOrFail();
+    
+        $id = Auth::id();
+        $me = User::find($id);
+        $me->likes()->attach($post->id);
+      
+        
+
+        return redirect('/timeline');
+    }
+    public function removelike($post){
+    
+        $post = Post::where('post', $post)->firstOrFail();
+
+        $id = Auth::id();
+        $me = User::find($id);
+        $me->likes()->detach($post->id);
+        return redirect('/timeline');
     }
 }

@@ -57,6 +57,11 @@
 
                     <a href="" class=""><h5>{{$post->user->name}}</h5> </a> <p class="ml-2 ">- {{$post->created_at->diffForHumans()}}</p>
                    
+                     
+                          <a href="{{ url('/like/' .  $post->post ) }}" class="ml-5"><i class='far fa-thumbs-up' style='font-size:24px'></i></a>
+
+                   
+                            <a href="{{ url('/remove-like/' . $post->post) }}" class="ml-5"><i class='fas fa-thumbs-up' style='font-size:24px'></i></a>
                       
                  
                     </div>
@@ -71,6 +76,9 @@
                 <div class="card-body" style="background-color: rgba(0,0,0,.03);">
 
                 <p>{{$post->post}}</p>
+                 
+                  
+                   
                
                 </div>
                 

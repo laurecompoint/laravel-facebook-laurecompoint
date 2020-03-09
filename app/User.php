@@ -47,4 +47,8 @@ class User extends Authenticatable
     public function isFriends(User $user){
         return !is_null($this->friends()->where('user_id', $user->id)->first());
     }
+    public function likes(){
+        return $this->belongsToMany('App\User', 'likes', 'like_post_id', 'user_id')->withTimestamps();
+        }
+
 }
