@@ -20,7 +20,7 @@
                 <img src="img/{{$user->avatar}}" style="border-radius: 10px 100px / 120px;" class="w-25"/>
               
                 <div class="col-6 mr-5">
-                <h5>{{ $user->name}}</h5>
+                <a href="{{$user->name}}" class="text-white"><h5>{{ $user->name}}</h5></a>
                 <p>{{ $user->email}}</p>
                 </div>
                 </div>

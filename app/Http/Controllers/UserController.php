@@ -58,7 +58,7 @@ public function update(Request $request)
 //suprime l'avatar 
 public function destroyavatar(User $user)
 {
-    $user->where('avatar', Auth::user()->avatar)->update([  'avatar'  =>    'avatar.png']);
+    $user->where('avatar', Auth::user()->avatar)->update([  'avatar'  => 'avatar.png']);
     return redirect()->back()->with('alertdeleteavatar', "Votre avatar à bien été suprime et remplacer par celui par défaut" );
 }
 

@@ -31,7 +31,7 @@
     <div class="card m-auto" style="width: 18rem; ">
  
   <div class="card-body">
-    <h5 class="card-title"> @ {{ $userprofil->name  }} friends</h5>
+    <h5 class="card-title"> &#x40;{{ $userprofil->name  }} friends</h5>
 
     @forelse ($listoffriends as $friends)
                    
@@ -62,7 +62,7 @@
 
     <div class="col-8">
     <div class="container mt-5 mb-5 ml-4">
-         <h2 class="">@ {{ $userprofil->name  }} profil</h2>
+         <h2 class="">&#x40;{{ $userprofil->name  }} profil</h2>
     </div>
 
 @forelse ($userprofil->posts()->get() as $post)
@@ -75,8 +75,23 @@
                     <div class=" col-10 mt-3">
 
                     <a href="" class=""><h5>{{$post->user->name}}</h5> </a>
+
+                    @if($post->UserLikedPost())
+                    <div class="row">
+                            <a href="{{ url('/remove-like/' . $post->post) }}" class="ml-3"><i class='fas fa-thumbs-up' style='font-size:24px'></i></a>
+                            <p class="mt-2 ml-1 text-primary"> {{$post->likes()->where('post_id',  $post->id)->count()}}</p>
+                       
+                    </div>
+                    @else
+                    <div class="row">
+                         <a href="{{ url('/like/' .  $post->post ) }}" class="ml-3"><i class='far fa-thumbs-up' style='font-size:24px'></i></a>
+                         <p class="mt-2  text-primary"> {{$post->likes()->where('post_id',  $post->id)->count()}}</p>
+                    </div>
+                    @endif
                    
                     <p class="">{{$post->post}}</p>
+                   
+                  
 
                     <p class="">{{$post->created_at->diffForHumans()}}</p>
                     </div>

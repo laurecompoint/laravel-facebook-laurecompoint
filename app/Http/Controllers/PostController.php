@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\User;
 use App\Post;
+use App\Like;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -13,16 +14,17 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Post $post)
+    public function index(Post $post, Like $like, User $user)
     {
-         //$posts = $post->orderBy('id', 'DESC')->paginate(4);
         
-        
+    
          if (Auth::check()) {
-          
            
+        
             return view('index', [ 
                 'user' => Auth::user() ,
+              
+               
                
                 
                 ]);

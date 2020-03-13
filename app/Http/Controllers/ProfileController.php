@@ -39,6 +39,10 @@ class ProfileController extends Controller
      
       
     }
+
+    public function friendsrequeste($username, User $user){
+
+    }
  
 
   

@@ -17,7 +17,7 @@
 
                     <div class="ml-2 col-11">
                       
-                    <input type="text" class="form-control inputpost" placeholder="Que voulez-vous dire, laure ?" name="post" />
+                    <input type="text" class="form-control inputpost" placeholder="Que voulez-vous dire, {{ Auth::user()->name }} ?" name="post" />
                     </div>
 
                          
@@ -57,13 +57,61 @@
 
                     <a href="" class=""><h5>{{$post->user->name}}</h5> </a> <p class="ml-2 ">- {{$post->created_at->diffForHumans()}}</p>
                    
-                     
-                          <a href="{{ url('/like/' .  $post->post ) }}" class="ml-5"><i class='far fa-thumbs-up' style='font-size:24px'></i></a>
+                     @if($post->UserLikedPost())
+                         <a href="{{ url('/remove-like/' . $post->post) }}" class="ml-5"><i class='fas fa-thumbs-up' style='font-size:24px'></i></a>
+                         <p class="mt-2 ml-1 text-primary"> {{$post->likes()->where('post_id',  $post->id)->count()}}</p>
+                        
+                    @else
+                         <a href="{{ url('/like/' .  $post->post ) }}" class="ml-5"><i class='far fa-thumbs-up' style='font-size:24px'></i></a>
+                         <p class="mt-2 ml-1 text-primary"> {{$post->likes()->where('post_id',  $post->id)->count()}}</p>
 
-                   
-                            <a href="{{ url('/remove-like/' . $post->post) }}" class="ml-5"><i class='fas fa-thumbs-up' style='font-size:24px'></i></a>
-                      
+                    @endif
+                  
+                    </div>
+
+                         
+                  </div>
+               
+
+
+                </div>
+
+                <div class="card-body" style="background-color: rgba(0,0,0,.03);">
+
+                <p>{{$post->post}}</p>
                  
+                  
+                   
+               
+                </div>
+                
+            </div>
+            @endforeach
+
+            @foreach ( $user->timeline() as $post  )
+            <div class="card mt-5">
+                <div class="card-header bg-white">
+
+               
+                  <div class="row m-auto">
+                    <div class="col-1">
+                        <img src="img/{{$post->user->avatar}}" class="ml-1" style="width: 40PX; border-radius: 10px 100px / 120px;"/>
+                    </div>
+
+                    <div class="ml-2 col-10 row ">
+
+                    <a href="" class=""><h5>{{$post->user->name}}</h5> </a> <p class="ml-2 ">- {{$post->created_at->diffForHumans()}}</p>
+                   
+                     @if($post->UserLikedPost())
+                         <a href="{{ url('/remove-like/' . $post->post) }}" class="ml-5"><i class='fas fa-thumbs-up' style='font-size:24px'></i></a>
+                         <p class="mt-2 ml-1 text-primary"> {{$post->likes()->where('post_id',  $post->id)->count()}}</p>
+                        
+                    @else
+                         <a href="{{ url('/like/' .  $post->post ) }}" class="ml-5"><i class='far fa-thumbs-up' style='font-size:24px'></i></a>
+                         <p class="mt-2 ml-1 text-primary"> {{$post->likes()->where('post_id',  $post->id)->count()}}</p>
+
+                    @endif
+                  
                     </div>
 
                          

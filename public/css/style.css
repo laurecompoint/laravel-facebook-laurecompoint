@@ -9,3 +9,7 @@ color: white;
 .inputpost{
     border: none;
 }
+.link:hover{
+    background-color: #4267b2;
+    color: white;
+}

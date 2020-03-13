@@ -29,3 +29,5 @@ Route::get('/remove-friends/{username}', 'UserController@removefriends')->middle
 
 Route::get('/like/{post}', 'PostController@like')->middleware('auth');
 Route::get('/remove-like/{post}', 'PostController@removelike')->middleware('auth');
+
+Route::get('/friends/{username}', 'ProfileFriendsController@friends')->name('profile');

@@ -48,7 +48,26 @@ class User extends Authenticatable
         return !is_null($this->friends()->where('user_id', $user->id)->first());
     }
     public function likes(){
-        return $this->belongsToMany('App\User', 'likes', 'like_post_id', 'user_id')->withTimestamps();
-        }
+        return $this->belongsToMany('App\User', 'likes', 'user_id', 'post_id')->withTimestamps();
+    }
+    public function post(){
+        return $this->belongsTo(Post::class);
+    }
+
+    public function timeline(){
+       
+        $following = $this->friends()->with(['posts' => function ($query) {
+            $query->orderBy('id', 'desc'); 
+            $query->paginate(5);
+        }])->get();
+ 
+       
+    
+        $timeline = $following->flatMap(function ($values) {
+            return $values->posts;
+        });
+    
+        return $timeline;
+    }
 
 }

@@ -54,7 +54,7 @@ footer { position: absolute; bottom: 8%; font-size: 12px;}
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light  shadow-sm"  style="background-color:white">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}" style="color:#4267b2">
+                <a class="navbar-brand" href="{{ url('/timeline') }}" style="color:#4267b2">
                 <i class="fa fa-facebook-square" style="font-size:24px"></i>  {{ config('app.name', 'Laravel') }} 
                 </a>
             
@@ -91,27 +91,26 @@ footer { position: absolute; bottom: 8%; font-size: 12px;}
                             @endif
                         @else
                             <li class="nav-item">
-                                    <a class="nav-link" href="friends"  style="color:#4267b2">Friends</a>
+                                    <a class="nav-link" href="friends/{{ Auth::user()->name }}"  style="color:#4267b2">Friends</a>
                             </li>
-                            <li class="nav-item">
-                                    <a class="nav-link" href="timeline"  style="color:#4267b2">TimeLine</a>
-                            </li>
+                         
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown"  style="color:#4267b2" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                    {{ Auth::user()->name }} <span class="caret" ></span>
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"  
+                                  
+                                    <a class="dropdown-item link" href="/account">
+                                        Account
+                                    </a>
+                                    <a class="dropdown-item link" href="/{{ Auth::user()->name }}">
+                                        Profil
+                                    </a>
+                                    <a class="dropdown-item link" href="{{ route('logout') }}"  
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
-                                    </a>
-                                    <a class="dropdown-item" href="/account">
-                                        Account
-                                    </a>
-                                    <a class="dropdown-item" href="/{{ Auth::user()->name }}">
-                                        Profil
                                     </a>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
