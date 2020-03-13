@@ -78,14 +78,14 @@
 
                     @if($post->UserLikedPost())
                     <div class="row">
-                            <a href="{{ url('/remove-like/' . $post->post) }}" class="ml-3"><i class='fas fa-thumbs-up' style='font-size:24px'></i></a>
-                            <p class="mt-2 ml-1 text-primary"> {{$post->likes()->where('post_id',  $post->id)->count()}}</p>
+                            <a href="{{ url('/remove-like/' . $post->post) }}" class="ml-3"><i class='fas fa-thumbs-up' style='font-size:20px'></i></a>
+                            <p class="mt-1 ml-1 text-primary"> {{$post->likes()->where('post_id',  $post->id)->count()}}</p>
                        
                     </div>
                     @else
                     <div class="row">
-                         <a href="{{ url('/like/' .  $post->post ) }}" class="ml-3"><i class='far fa-thumbs-up' style='font-size:24px'></i></a>
-                         <p class="mt-2  text-primary"> {{$post->likes()->where('post_id',  $post->id)->count()}}</p>
+                         <a href="{{ url('/like/' .  $post->post ) }}" class="ml-3"><i class='far fa-thumbs-up' style='font-size:20px'></i></a>
+                         <p class="mt-1  text-primary"> {{$post->likes()->where('post_id',  $post->id)->count()}}</p>
                     </div>
                     @endif
                    

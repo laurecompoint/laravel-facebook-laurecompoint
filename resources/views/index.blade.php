@@ -40,6 +40,13 @@
           </div>
     @endif
 </div>
+<div class="container ">
+    @if (session('alertcreatereply'))
+          <div class="alert alert-success m-auto h-100 col-md-8 justify-content-center">
+                {{ session('alertcreatereply') }}
+          </div>
+    @endif
+</div>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8 mb-3">
@@ -58,12 +65,12 @@
                     <a href="" class=""><h5>{{$post->user->name}}</h5> </a> <p class="ml-2 ">- {{$post->created_at->diffForHumans()}}</p>
                    
                      @if($post->UserLikedPost())
-                         <a href="{{ url('/remove-like/' . $post->post) }}" class="ml-5"><i class='fas fa-thumbs-up' style='font-size:24px'></i></a>
-                         <p class="mt-2 ml-1 text-primary"> {{$post->likes()->where('post_id',  $post->id)->count()}}</p>
+                         <a href="{{ url('/remove-like/' . $post->post) }}" class="ml-5"><i class='fas fa-thumbs-up' style='font-size:20px'></i></a>
+                         <p class="mt-1 ml-1 text-primary"> {{$post->likes()->where('post_id',  $post->id)->count()}}</p>
                         
                     @else
-                         <a href="{{ url('/like/' .  $post->post ) }}" class="ml-5"><i class='far fa-thumbs-up' style='font-size:24px'></i></a>
-                         <p class="mt-2 ml-1 text-primary"> {{$post->likes()->where('post_id',  $post->id)->count()}}</p>
+                         <a href="{{ url('/like/' .  $post->post ) }}" class="ml-5"><i class='far fa-thumbs-up' style='font-size:20px'></i></a>
+                         <p class="mt-1 ml-1 text-primary"> {{$post->likes()->where('post_id',  $post->id)->count()}}</p>
 
                     @endif
                   
@@ -79,7 +86,42 @@
                 <div class="card-body" style="background-color: rgba(0,0,0,.03);">
 
                 <p>{{$post->post}}</p>
-                 
+               
+
+                       
+
+                        <div class="row float-right mr-5 col-10">
+                        @foreach ( $post->reply()->get() as $replypost  )
+                            <div class="col-1">
+                                <img src="img/{{$post->user->avatar}}" class="ml-1" style="width: 40PX; border-radius: 10px 100px / 120px;"/>
+                            </div>
+
+                                <div class="ml-2 col-10  ">
+
+                                <a href="" class=""><h5>{{$post->user->name}}</h5> </a> 
+                            
+                                <p class="mb-3">{{$replypost->reply}}</p>
+                                <p class=""> {{$replypost->created_at->diffForHumans()}}</p>
+                                </div>
+                                @endforeach
+                         
+                        </div>
+                      
+
+              
+
+                <form method="post" action="{{route('replys.create')}}">
+                <input type="hidden" class="form-control" name="post_id" value="{{$post->id}}" placeholder="" aria-label="" aria-describedby="basic-addon1">
+                <input type="hidden" class="form-control" name="user_id" value="{{Auth::user()->id}}" placeholder="test" aria-label="" aria-describedby="basic-addon1">
+                     
+                <div class="input-group col-10 mt-4 float-right">
+                <input type="text" class="form-control" name="reply" placeholder="" aria-label="" aria-describedby="basic-addon1">
+                        <div class="input-group-append">
+                        {{csrf_field()}}
+                            <button class="btn btn-primary" type="summit">Reply</button>
+                        </div>
+                </div>
+                 </form>
                   
                    
                
@@ -103,12 +145,12 @@
                     <a href="" class=""><h5>{{$post->user->name}}</h5> </a> <p class="ml-2 ">- {{$post->created_at->diffForHumans()}}</p>
                    
                      @if($post->UserLikedPost())
-                         <a href="{{ url('/remove-like/' . $post->post) }}" class="ml-5"><i class='fas fa-thumbs-up' style='font-size:24px'></i></a>
-                         <p class="mt-2 ml-1 text-primary"> {{$post->likes()->where('post_id',  $post->id)->count()}}</p>
+                         <a href="{{ url('/remove-like/' . $post->post) }}" class="ml-5"><i class='fas fa-thumbs-up' style='font-size:20px'></i></a>
+                         <p class="mt-1 ml-1 text-primary"> {{$post->likes()->where('post_id',  $post->id)->count()}}</p>
                         
                     @else
-                         <a href="{{ url('/like/' .  $post->post ) }}" class="ml-5"><i class='far fa-thumbs-up' style='font-size:24px'></i></a>
-                         <p class="mt-2 ml-1 text-primary"> {{$post->likes()->where('post_id',  $post->id)->count()}}</p>
+                         <a href="{{ url('/like/' .  $post->post ) }}" class="ml-5"><i class='far fa-thumbs-up' style='font-size:20px'></i></a>
+                         <p class="mt-1 ml-1 text-primary"> {{$post->likes()->where('post_id',  $post->id)->count()}}</p>
 
                     @endif
                   
@@ -125,6 +167,39 @@
 
                 <p>{{$post->post}}</p>
                  
+                <div class="row float-right mr-5 col-10">
+                        @foreach ( $post->reply()->get() as $replypost  )
+                            <div class="col-1">
+                                <img src="img/{{$post->user->avatar}}" class="ml-1" style="width: 40PX; border-radius: 10px 100px / 120px;"/>
+                            </div>
+
+                                <div class="ml-2 col-10  ">
+
+                                <a href="" class=""><h5>{{$replypost->user->name}}</h5> </a> 
+                            
+                                <p class="mb-3">{{$replypost->reply}}</p>
+                                <p class=""> {{$replypost->created_at->diffForHumans()}}</p>
+                                </div>
+                                @endforeach
+                         
+                        </div>
+                      
+
+              
+
+                <form method="post" action="{{route('replys.create')}}">
+                <input type="hidden" class="form-control" name="post_id" value="{{$post->id}}" placeholder="" aria-label="" aria-describedby="basic-addon1">
+                <input type="hidden" class="form-control" name="user_id" value="{{Auth::user()->id}}" placeholder="test" aria-label="" aria-describedby="basic-addon1">
+                <div class="input-group col-10 mt-4 float-right">
+                        
+                        <input type="text" class="form-control" name="reply" placeholder="" aria-label="" aria-describedby="basic-addon1">
+                        <div class="input-group-append">
+                        {{csrf_field()}}
+                            <button class="btn btn-primary" type="summit">Reply</button>
+                        </div>
+                </div>
+                 </form>
+                  
                   
                    
                

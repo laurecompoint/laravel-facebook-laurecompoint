@@ -41,6 +41,9 @@ class User extends Authenticatable
     public function posts(){
         return $this->hasMany('App\Post', 'user_id', 'id')->orderBy('id', 'desc');
     }
+    public function reply(){
+        return $this->hasMany('App\Reply', 'user_id', 'id')->orderBy('id', 'desc');
+    }
     public function friends(){
     return $this->belongsToMany('App\User', 'friends', 'friend_user_id', 'user_id')->withTimestamps();
     }

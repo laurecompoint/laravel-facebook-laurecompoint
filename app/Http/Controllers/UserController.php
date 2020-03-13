@@ -78,7 +78,7 @@ public function search(User $user, Request $request){
    
     
         if($search != ""){
-            $user = User::where('name', 'LIKE', $search.'%')->paginate(10);
+            $user = User::where('name', 'LIKE', '%'.$search.'%')->paginate(10);
     
            
             return view('searchuser', ['userfound' => $user, 'search' => $search] );

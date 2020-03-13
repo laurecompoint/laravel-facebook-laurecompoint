@@ -3,6 +3,7 @@
 use Illuminate\Database\Seeder;
 use App\User;
 use App\Post;
+use App\Reply;
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -14,6 +15,7 @@ class DatabaseSeeder extends Seeder
     {
         //$this->call(UsersTableSeeder::class);
         //$this->call(PostsTableSeeder::class);
+         //$this->call(ReplyTableSeeder::class);
         $faker = Faker\Factory::create('fr_FR');
 
         for ($i = 1; $i < 6; $i++) {
@@ -31,6 +33,15 @@ class DatabaseSeeder extends Seeder
             $user->email = $faker->unique()->email;
             $user->password = bcrypt('123456');
             $user->save();
+        }
+
+       
+        for ($i = 1; $i < 6; $i++) {
+            $reply = new Reply;
+            $reply->reply = $faker->realText(140);
+            $reply->user_id = $i;
+            $reply->post_id = $i;
+            $reply->save();
         }
 
        
