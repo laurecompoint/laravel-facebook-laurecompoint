@@ -62,7 +62,7 @@
 
                     <div class="ml-2 col-10 row ">
 
-                    <a href="" class=""><h5>{{$post->user->name}}</h5> </a> <p class="ml-2 ">- {{$post->created_at->diffForHumans()}}</p>
+                    <a href="/{{$post->user->name}}" class=""><h5>{{$post->user->name}}</h5> </a> <p class="ml-2 ">- {{$post->created_at->diffForHumans()}}</p>
                    
                      @if($post->UserLikedPost())
                          <a href="{{ url('/remove-like/' . $post->post) }}" class="ml-5"><i class='fas fa-thumbs-up' style='font-size:20px'></i></a>
@@ -142,7 +142,7 @@
 
                     <div class="ml-2 col-10 row ">
 
-                    <a href="" class=""><h5>{{$post->user->name}}</h5> </a> <p class="ml-2 ">- {{$post->created_at->diffForHumans()}}</p>
+                    <a href="/{{$post->user->name}}" class=""><h5>{{$post->user->name}}</h5> </a> <p class="ml-2 ">- {{$post->created_at->diffForHumans()}}</p>
                    
                      @if($post->UserLikedPost())
                          <a href="{{ url('/remove-like/' . $post->post) }}" class="ml-5"><i class='fas fa-thumbs-up' style='font-size:20px'></i></a>
