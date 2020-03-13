@@ -93,12 +93,12 @@
                         <div class="row float-right mr-5 col-10">
                         @foreach ( $post->reply()->get() as $replypost  )
                             <div class="col-1">
-                                <img src="img/{{$post->user->avatar}}" class="ml-1" style="width: 40PX; border-radius: 10px 100px / 120px;"/>
+                                <img src="img/{{$replypost->user->avatar}}" class="ml-1" style="width: 40PX; border-radius: 10px 100px / 120px;"/>
                             </div>
 
                                 <div class="ml-2 col-10  ">
 
-                                <a href="" class=""><h5>{{$post->user->name}}</h5> </a> 
+                                <a href="/{{$replypost->user->name}}" class=""><h5>{{$replypost->user->name}}</h5> </a> 
                             
                                 <p class="mb-3">{{$replypost->reply}}</p>
                                 <p class=""> {{$replypost->created_at->diffForHumans()}}</p>
@@ -170,12 +170,12 @@
                 <div class="row float-right mr-5 col-10">
                         @foreach ( $post->reply()->get() as $replypost  )
                             <div class="col-1">
-                                <img src="img/{{$post->user->avatar}}" class="ml-1" style="width: 40PX; border-radius: 10px 100px / 120px;"/>
+                                <img src="img/{{$replypost->user->avatar}}" class="ml-1" style="width: 40PX; border-radius: 10px 100px / 120px;"/>
                             </div>
 
                                 <div class="ml-2 col-10  ">
 
-                                <a href="" class=""><h5>{{$replypost->user->name}}</h5> </a> 
+                                <a href="/{{$replypost->user->name}}" class=""><h5>{{$replypost->user->name}}</h5> </a> 
                             
                                 <p class="mb-3">{{$replypost->reply}}</p>
                                 <p class=""> {{$replypost->created_at->diffForHumans()}}</p>
