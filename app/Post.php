@@ -3,7 +3,7 @@
 namespace App;
 use App\User;
 use App\Like;
-use App\Reply;
+
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
 
@@ -14,7 +14,7 @@ class Post extends Model
     }
 
     public function reply(){
-        return $this->hasMany('App\Reply', 'post_id', 'id')->orderBy('id', 'asc');
+        return $this->hasMany('App\Replies', 'post_id', 'id')->orderBy('id', 'asc');
     }
     
     public function likes(){
