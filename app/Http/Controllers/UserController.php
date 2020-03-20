@@ -116,7 +116,7 @@ public function FriendsAccept(Friend $friend, Request $request)
     
     $friend->where('user_id', $friend->user_id = $request->userid)->update([  'accepte'  =>  $friend->accepte = 1 ]);
    
-    return redirect('/' . Auth::user()->name);
+    return redirect()->back()->with('alertacceptfriends', "Vous avez un nouvel ami" );;
 }
 
 public function removefriends($username, Friend $friend)
@@ -129,7 +129,7 @@ public function removefriends($username, Friend $friend)
     $friend->delete();
   
    
-    return redirect('/' . $username);
+    return redirect()->back()->with('alertremovefriends', "Vous etes desormais plus amies" );
 }
 
     

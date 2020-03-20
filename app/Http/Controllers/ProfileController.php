@@ -21,7 +21,7 @@ class ProfileController extends Controller
             
             $is_edit_profile = (Auth::id() == $userprofil->id);
             $button_add_friend = !$is_edit_profile ;
-            $listoffriends = $userprofil->friends()->orderBy('name')->get();
+            $listoffriends = $userprofil->friendsAccepted()->orderBy('name')->get();
           
            
             $friends = Friend::where( ['friend_id' => Auth::user()->id, 'accepte' => 0])->get();

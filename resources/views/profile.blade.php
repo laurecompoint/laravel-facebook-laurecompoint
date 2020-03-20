@@ -13,7 +13,17 @@
     
                     @if ($is_edit_profile)
                    
-    
+                    @if (session('alertremovefriends'))
+                                <div class="alert alert-success  mt-4 col-12">
+                                    {{ session('alertremovefriends') }}
+                                </div>
+                    @endif
+
+                    @if (session('alertacceptfriends'))
+                                <div class="alert alert-success  mt-4 col-12">
+                                    {{ session('alertacceptfriends') }}
+                                </div>
+                    @endif
                     
                     @foreach($friends as $friendrequettes) 
                    
@@ -51,9 +61,9 @@
                     </a>
                     @else
                     <div class="">
-                        @foreach($userprofil->friendsNoAccepted as $test) 
+                        @foreach($userprofil->friendsNoAccepted as $requestfriendencour) 
     
-                        @if(!$test->pivot->accepte) 
+                        @if(!$requestfriendencour->pivot->accepte) 
                         <div class="alert alert-success  mb-3 col-12 justify-content-center">
                                Demande d'amis en cours, attente d'acceptation de la part de {{$userprofil->name}}
                          </div>
@@ -79,18 +89,19 @@
 
     @forelse ($listoffriends as $friends)
                    
-                        <div class="row m-auto border border-dark border-left-0 border-right-0 border-top-0 pb-2">
+                        <div class="row m-auto border border-dark border-left-0 border-right-0 border-top-0 pb-1">
 
                         <img src="img/{{ $friends->avatar }}"  style="border-radius: 10px 100px / 120px; width: 40%;" class="mt-2"/>
 
-                                <a href="{{ url('/' . $friends->username) }}" class="text-info col-6">
+                                <a href="{{ url('/' . $friends->name) }}" class="text-info col-6 mt-3">
                                     <h4 class="list-group-item-heading">{{ $friends->name }}</h4>
                                     <strong class="list-group-item-text text-info ">{{ $friends->created_at->diffForHumans() }}</strong>
                                 </a>
 
                                 @if($is_edit_profile) 
-                                <a href="{{ url('/remove-friends/' . $userprofil->name) }}">
-                                    <button type="button" class="btn border-danger text-danger col-12 mb-3">Remove friend</button>
+                              
+                                <a href="{{ url('/remove-friends/' . $userprofil->name) }}" class="">
+                                    <button type="button" class="btn text-danger col-12 mb-1 ">Remove friend</button>
                                 
                                 </a>
                                 @else 

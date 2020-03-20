@@ -90,9 +90,7 @@ footer { position: absolute; bottom: 8%; font-size: 12px;}
                                 </li>
                             @endif
                         @else
-                            <li class="nav-item">
-                                    <a class="nav-link" href="friends/{{ Auth::user()->name }}"  style="color:#4267b2">Friends</a>
-                            </li>
+                         
                          
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown"  style="color:#4267b2" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -107,6 +105,9 @@ footer { position: absolute; bottom: 8%; font-size: 12px;}
                                     <a class="dropdown-item link" href="/{{ Auth::user()->name }}">
                                         Profil
                                     </a>
+                                 
+                                    <a class="dropdown-item link" href="/friends/{{ Auth::user()->name }}">Friends</a>
+                            
                                     <a class="dropdown-item link" href="{{ route('logout') }}"  
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

@@ -78,7 +78,7 @@ class User extends Authenticatable
 
     public function timeline(){
        
-        $following = $this->friends()->with(['posts' => function ($query) {
+        $following = $this->friendsAccepted()->with(['posts' => function ($query) {
             $query->orderBy('id', 'desc'); 
             $query->paginate(5);
         }])->get();
