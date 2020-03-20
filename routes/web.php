@@ -24,7 +24,8 @@ Route::get('/timeline', 'PostController@index');
 Route::post('/add-posts', 'PostController@create')->name('posts.create')->middleware('auth');
 
 Route::get('/{username}', 'ProfileController@show')->name('profile');
-Route::get('/add-friends/{username}', 'UserController@addfriends')->middleware('auth');
+Route::get('/add-friends/{username}', 'UserController@addfriendsRequeste')->middleware('auth');
+Route::post('/friends-accept', 'UserController@FriendsAccept')->middleware('auth')->name('friends.accept');
 Route::get('/remove-friends/{username}', 'UserController@removefriends')->middleware('auth');
 
 Route::get('/like/{post}', 'PostController@like')->middleware('auth');

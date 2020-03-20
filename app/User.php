@@ -1,7 +1,7 @@
 <?php
 
 namespace App;
-
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -41,21 +41,40 @@ class User extends Authenticatable
     public function posts(){
         return $this->hasMany('App\Post', 'user_id', 'id')->orderBy('id', 'desc');
     }
+ 
     public function reply(){
         return $this->hasMany('App\Replies', 'user_id', 'id')->orderBy('id', 'desc');
-    }
+    } 
     public function friends(){
-    return $this->belongsToMany('App\User', 'friends', 'friend_user_id', 'user_id')->withTimestamps();
+        return $this->belongsToMany('App\user', 'friends','friend_id','user_id');
     }
-    public function isFriends(User $user){
-        return !is_null($this->friends()->where('user_id', $user->id)->first());
+  
+    public function friendsAccepted()
+    {
+        return $this->belongsToMany('App\user', 'friends','friend_id','user_id')
+            ->withPivot('accepte')
+            ->wherePivot('accepte', true);
     }
+   
+    public function friendsNoAccepted()
+    {
+        return $this->friends()->withPivot('accepte')->wherePivot('accepte', false);
+    }
+    
     public function likes(){
         return $this->belongsToMany('App\User', 'likes', 'user_id', 'post_id')->withTimestamps();
     }
     public function post(){
         return $this->belongsTo(Post::class);
     }
+
+    public function NoFriendYet(){
+        $like = $this->friends()->where('user_id',  Auth::user()->id)->get();
+        if (!$like->isEmpty()){
+            return false;
+        }
+        return true;
+     }
 
     public function timeline(){
        
@@ -72,5 +91,16 @@ class User extends Authenticatable
     
         return $timeline;
     }
+   
+  
+   
+    
+    
+    
+    
+    
+   
+
+
 
 }

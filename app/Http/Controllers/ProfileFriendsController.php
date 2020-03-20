@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 
 class ProfileFriendsController extends Controller
 {
+
+
+    
     public function friends($username, User $user){
 
         if (Auth::check()) {

@@ -6,13 +6,42 @@
 
 
     <div class="col-4 mt-5">
+    
+   
     @if (Auth::check())
     <div class="m-auto" style="width: 18rem; ">
+    
                     @if ($is_edit_profile)
+                   
+    
+                    
+                    @foreach($friends as $friendrequettes) 
+                   
+                    <div class="alert alert-success  mb-3 col-12 justify-content-center">
+                    <p>{{$friendrequettes->user->name}} vous à envoyer une demande d'amie</p>
+                    <form class="col-12" method="post" action="{{route('friends.accept')}}">
+                    <input type="hidden" name="userid" value="{{$friendrequettes->user->id}}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    {{csrf_field()}}
+                  
+                        <button type="summit" class="btn btn-primary text-white col-12 mb-3">
+                       
+                            Accepte l'invitation
+                        </button>
+                       
+                    </form>
+                   
+                    </div>
+                  
+                    @endforeach
+                 
+                  
+                   
+
                     <a href="/account" >
                         <button type="button" class="btn btn-primary text-white col-12 mb-3">Edit Profile</button>
                     </a>
-                    @elseif ($button_add_friend)
+                   
+                    @elseif($userprofil->NoFriendYet())
                     <a href="{{ url('/add-friends/' . $userprofil->name) }}">
                         <button type="button" class="btn btn-primary text-white col-12 mb-3">
                        
@@ -21,10 +50,25 @@
                        
                     </a>
                     @else
-                    <a href="{{ url('/delete-friends/' . $userprofil->name) }}">
-                        <button type="button" class="btn border-danger text-danger col-12 mb-3">Remove friend</button>
-                       
-                    </a>
+                    <div class="">
+                        @foreach($userprofil->friendsNoAccepted as $test) 
+    
+                        @if(!$test->pivot->accepte) 
+                        <div class="alert alert-success  mb-3 col-12 justify-content-center">
+                               Demande d'amis en cours, attente d'acceptation de la part de {{$userprofil->name}}
+                         </div>
+                        @else 
+                        
+                        @endif 
+                        @endforeach
+                    </div>
+                    <div class="">
+
+                   
+                    
+                  
+                    
+                    </div>
                     @endif
         </div>
         @endif
@@ -37,13 +81,22 @@
                    
                         <div class="row m-auto border border-dark border-left-0 border-right-0 border-top-0 pb-2">
 
-                        <img src="img/{{ $friends->avatar }}"  style="border-radius: 10px 100px / 120px; width: 40%;" class=""/>
+                        <img src="img/{{ $friends->avatar }}"  style="border-radius: 10px 100px / 120px; width: 40%;" class="mt-2"/>
 
                                 <a href="{{ url('/' . $friends->username) }}" class="text-info col-6">
                                     <h4 class="list-group-item-heading">{{ $friends->name }}</h4>
                                     <strong class="list-group-item-text text-info ">{{ $friends->created_at->diffForHumans() }}</strong>
                                 </a>
-                               
+
+                                @if($is_edit_profile) 
+                                <a href="{{ url('/remove-friends/' . $userprofil->name) }}">
+                                    <button type="button" class="btn border-danger text-danger col-12 mb-3">Remove friend</button>
+                                
+                                </a>
+                                @else 
+
+                                @endif 
+                                        
                         </div>
                   
                     @empty
@@ -94,6 +147,8 @@
                   
 
                     <p class="">{{$post->created_at->diffForHumans()}}</p>
+
+                   
                     </div>
 
                          

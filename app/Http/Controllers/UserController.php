@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Friend;
 use Image;
 use Illuminate\Support\Facades\Hash;
 class UserController extends Controller
@@ -90,25 +91,44 @@ public function search(User $user, Request $request){
 
 }
 
-public function addfriends($username)
+
+
+
+public function addfriendsRequeste($username)
 {
     
     $user = User::where('name', $username)->firstOrFail();
 
     $id = Auth::id();
-    $me = User::find($id);
-    $me->friends()->attach($user->id);
+    //$me = User::find($id);
+
+    $friend = new Friend;
+    $friend->accepte = 0;
+    $friend->user_id = $id;
+    $friend->friend_id = $user->id ;
+    $friend->save();
+    
     return redirect('/' . $username);
 }
 
-public function removefriends($username)
+public function FriendsAccept(Friend $friend, Request $request)
+{
+    
+    $friend->where('user_id', $friend->user_id = $request->userid)->update([  'accepte'  =>  $friend->accepte = 1 ]);
+   
+    return redirect('/' . Auth::user()->name);
+}
+
+public function removefriends($username, Friend $friend)
 {
    
     $user = User::where('name', $username)->firstOrFail();
 
-    $id = Auth::id();
-    $me = User::find($id);
-    $me->friends()->detach($user->id);
+    $user = Friend::where('friend_id', $user->id)->firstOrFail();
+    $friend = Friend::find($user->id);
+    $friend->delete();
+  
+   
     return redirect('/' . $username);
 }
 
