@@ -3,7 +3,8 @@
 use Illuminate\Database\Seeder;
 use App\User;
 use App\Post;
-use App\Reply;
+use App\Replies;
+use App\Like;
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -37,12 +38,21 @@ class DatabaseSeeder extends Seeder
 
        
         for ($i = 1; $i < 6; $i++) {
-            $reply = new Reply;
+            $reply = new Replies;
             $reply->reply = $faker->realText(140);
             $reply->user_id = $i;
             $reply->post_id = $i;
             $reply->save();
         }
+
+        for ($i = 1; $i < 6; $i++) {
+            $reply = new Like;
+            $reply->user_id = $i;
+            $reply->post_id = $i;
+            $reply->save();
+        }
+
+       
 
        
        

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Friend extends Model
 {
+  
     public function user(){
         return $this->belongsTo(User::class);
     }
@@ -15,4 +16,5 @@ class Friend extends Model
             ->withPivot('accepte')
             ->wherePivot('accepte', true);
     }
+   
 }
