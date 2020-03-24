@@ -63,12 +63,14 @@
                     <div class="">
                         @foreach($userprofil->friendsNoAccepted as $requestfriendencour) 
     
-                        @if(!$requestfriendencour->pivot->accepte) 
+                        @if($requestfriendencour->pivot->accepte) 
                         <div class="alert alert-success  mb-3 col-12 justify-content-center">
-                               Demande d'amis en cours, attente d'acceptation de la part de {{$userprofil->name}}
+                              Tout vos demande d'amie ont été accepter
                          </div>
                         @else 
-                        
+                        <div class="alert alert-success  mb-3 col-12 justify-content-center">
+                             Demande d'amis en cours, attente d'acceptation de la part de {{$userprofil->name}}
+                         </div>
                         @endif 
                         @endforeach
                     </div>
@@ -100,10 +102,10 @@
 
                                 @if($is_edit_profile) 
                               
-                                <a href="{{ url('/remove-friends/' . $userprofil->name) }}" class="">
-                                    <button type="button" class="btn text-danger col-12 mb-1 ">Remove friend</button>
-                                
-                                </a>
+                              
+                                <button type="button" class="btn text-danger col-6  mr-5"  data-toggle="modal" data-target="#Modalalerte">
+                                Remove friend
+                        </button>   
                                 @else 
 
                                 @endif 
@@ -179,6 +181,30 @@
 
 </div>
 
-
+<div class="modal fade " id="Modalalerte" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog " role="document">
+                    <div class="modal-content">
+                            <div class="modal-header">
+                            <h5 class="modal-title text-danger" id="exampleModalLabel">Supression alerte</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            </div>
+                            <div class="modal-body">
+                            <h6>Etês vous sur de vouloir supprimer votre amitier ?</h6>
+                            <p>Vous ne serez desormais plus jamais amis!!! </p>
+                        
+                            </div>
+                            <div class="modal-footer">
+                            
+                            <a href="{{ url('/remove-friends/' . $userprofil->name) }}" class="">
+                                    <button type="button" class="btn text-danger col-12 mb-1 ">Remove friend</button>
+                                
+                                </a>
+                            </div>
+                        </div>     
+                    </div>
+               
+                </div>
 
 @endsection
