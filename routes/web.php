@@ -22,6 +22,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/timeline', 'PostController@index');
 Route::post('/add-posts', 'PostController@create')->name('posts.create')->middleware('auth');
+Route::post('delete/{id}', 'PostController@destroy')->name('{id}')->middleware('auth');
 
 Route::get('/{username}', 'ProfileController@show')->name('profile');
 Route::get('/add-friends/{username}', 'UserController@addfriendsRequeste')->middleware('auth');
@@ -33,3 +34,4 @@ Route::get('/remove-like/{post}', 'PostController@removelike')->middleware('auth
 
 Route::get('/friends/{username}', 'ProfileFriendsController@friends')->name('profile');
 Route::post('/add-reply', 'RepliesController@create')->name('replys.create')->middleware('auth');
+

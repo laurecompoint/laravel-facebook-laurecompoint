@@ -134,36 +134,73 @@
 @forelse ($userprofil->posts()->get() as $post)
           
                   <div class="row m-auto border border-dark border-left-0 border-right-0 border-top-0 col-11">
-                    <div class="col-1 mt-3">
-                        <img src="img/{{$post->user->avatar}}"  style="border-radius: 10px 100px / 120px; width: 100%;" class=""/>
-                    </div>
+                        <div class="col-1 mt-3">
+                            <img src="img/{{$post->user->avatar}}"  style="border-radius: 10px 100px / 120px; width: 100%;" class=""/>
+                        </div>
 
-                    <div class=" col-10 mt-3">
+                        <div class=" col-10 mt-3">
 
-                    <a href="" class=""><h5>{{$post->user->name}}</h5> </a>
+                            <a href="" class=""><h5>{{$post->user->name}}</h5> </a>
 
-                    @if($post->UserLikedPost())
-                    <div class="row">
-                            <a href="{{ url('/remove-like/' . $post->post) }}" class="ml-3"><i class='fas fa-thumbs-up' style='font-size:20px'></i></a>
-                            <p class="mt-1 ml-1 text-primary"> {{$post->likes()->where('post_id',  $post->id)->count()}}</p>
-                       
-                    </div>
-                    @else
-                    <div class="row">
-                         <a href="{{ url('/like/' .  $post->post ) }}" class="ml-3"><i class='far fa-thumbs-up' style='font-size:20px'></i></a>
-                         <p class="mt-1  text-primary"> {{$post->likes()->where('post_id',  $post->id)->count()}}</p>
-                    </div>
-                    @endif
-                   
-                    <p class="">{{$post->post}}</p>
-                   
+                    
+
+                                @if($post->UserLikedPost())
+                                <div class="row">
+                                        <a href="{{ url('/remove-like/' . $post->post) }}" class="ml-3"><i class='fas fa-thumbs-up' style='font-size:20px'></i></a>
+                                        <p class="mt-1 ml-1 text-primary"> {{$post->likes()->where('post_id',  $post->id)->count()}}</p>
+                                
+                                </div>
+                                @else
+                                <div class="row">
+                                    <a href="{{ url('/like/' .  $post->post ) }}" class="ml-3"><i class='far fa-thumbs-up' style='font-size:20px'></i></a>
+                                    <p class="mt-1  text-primary"> {{$post->likes()->where('post_id',  $post->id)->count()}}</p>
+                                </div>
+                                @endif
+                    
+                                <p class="">{{$post->post}}</p>
+                    
+                    
+
+                                <p class="">{{$post->created_at->diffForHumans()}}</p>
+
+                    
+                        </div>
+                        <div>
+                        @if ($is_edit_profile)
+                        <button type="button" class="btn text-white"  style="opacity: 0.90; margin-left: -40px" data-toggle="modal" data-target="#modaldelete{{ $post->id }}">
+                             <i class="material-icons" style="font-size:36px; color: #660A11">delete_forever</i>
+                         </button>
+                        <div class="modal fade " id="modaldelete{{ $post->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog " role="document">
+                            <div class="modal-content">
+                                    <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Supression alerte ?</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    </div>
+                                    <div class="modal-body">
+                                    <h6>Etês vous sur de vouloir supprimer votre publication : " {{$post->post}} " ?</h6>
+
+                                    </div>
+                                    <div class="modal-footer">
+                                    
+                                        <form action="delete/{{ $post->id }}" method="POST">
+                                        {{ csrf_field() }}
+
+                                        <button class="btn text-white"   style="opacity: 0.90;background-color: #660A11">Oui</button>
+                                    
+                                        </form>
+                                    </div>
+                                </div>     
+                            </div>  
+                         
+                         </div>
+                         @else
+                         @endif
+                        </div>
+
                   
-
-                    <p class="">{{$post->created_at->diffForHumans()}}</p>
-
-                   
-                    </div>
-
                          
                   </div>
                 
@@ -175,8 +212,10 @@
                <img src="/img/pasdepost.png" class="w-50">
 
           </div>
+
+          
              
-          @endforelse
+@endforelse
     </div>
 
 </div>
@@ -205,6 +244,8 @@
                         </div>     
                     </div>
                
-                </div>
+ </div>
+
+ 
 
 @endsection

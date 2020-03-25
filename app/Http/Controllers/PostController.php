@@ -105,6 +105,7 @@ class PostController extends Controller
         //
     }
 
+   
     /**
      * Remove the specified resource from storage.
      *
@@ -112,13 +113,12 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy(Post $post,  Request $request)
-    {
-        $post = Post::find($post->id = $request->id);
+    { $post = Post::find($post->id = $request->id);
         
         if (Auth::check()) {
           
             $post->delete();
-            return redirect()->back()->with('alertdelete', "Votre post  :   $post->post  a bien été suprimer" );
+            return redirect()->back()->with('alertdelete', "Votre publication  :   $post->tweet  a bien été suprimer" );
         }
     }
 
