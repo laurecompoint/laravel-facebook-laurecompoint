@@ -115,7 +115,13 @@ public function FriendsAccept(Friend $friend, Request $request)
 {
     
     $friend->where('user_id', $friend->user_id = $request->userid)->update([  'accepte'  =>  $friend->accepte = 1 ]);
-   
+    $id = Auth::id();
+    $friends = new Friend;
+    $friends->accepte = 1;
+    $friends->user_id = $id;
+    $friends->friend_id = $request->userid ;
+    $friends->save();
+  
     return redirect()->back()->with('alertacceptfriends', "Vous avez un nouvel ami" );;
 }
 
