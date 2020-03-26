@@ -19,12 +19,13 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     
-    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+  
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     
     <script src="{{ asset('js/app.js') }}" defer></script>
+    
      <!-- Styles -->
      <style>
 
@@ -60,7 +61,7 @@ footer { position: absolute; bottom: 8%; font-size: 12px;}
         <nav class="navbar navbar-expand-md navbar-light  shadow-sm"  style="background-color:white">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/timeline') }}" style="color:#4267b2">
-                <i class="fa fa-facebook-square" style="font-size:24px"></i>  {{ config('app.name', 'Laravel') }} 
+                <img class="" src="https://www.facebook.com/images/fb_icon_325x325.png" style="font-size:10px; width: 30px; border-radius: 4px"/>  {{ config('app.name', 'Laravel') }} 
                 </a>
             
                 <form method="POST" action="{{URL::to('/search')}}" role="search">
@@ -134,4 +135,5 @@ footer { position: absolute; bottom: 8%; font-size: 12px;}
         </main>
     </div>
 </body>
+<script src='https://kit.fontawesome.com/a076d05399.js'></script>
 </html>

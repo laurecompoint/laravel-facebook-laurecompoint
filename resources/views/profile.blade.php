@@ -118,15 +118,17 @@
                                     </div>
                                     <div class="modal-body">
                                     <h6>Etês vous sur de vouloir supprimer votre amitier avec : " {{$friends->name}} " ?</h6>
-                                    <p>Vous ne serez plus jamais amis!!!</p>
+                                    <p>Vous ne serez plus jamais amis !!!</p>
 
                                     </div>
                                     <div class="modal-footer">
-                                    
-                                    <a href="{{ url('/remove-friends/' . $userprofil->name) }}" class="">
-                                    <button type="button" class="btn text-danger col-12 mb-1 ">Remove friend</button>
-                                
-                                </a>
+                                    <form action="{{route('friends.remove')}}" method="POST">
+                                   
+                                    <input name="idfriend" type="hidden" value="{{ $friends->id }}"/>
+                                    {{ csrf_field() }}
+                                    <button class="btn text-white" type="summit"  style="opacity: 0.90;background-color: #660A11">Oui</button>
+                                    </form>
+                              
                                     </div>
                                 </div>     
                             </div>  

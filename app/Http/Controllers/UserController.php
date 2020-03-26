@@ -125,14 +125,20 @@ public function FriendsAccept(Friend $friend, Request $request)
     return redirect()->back()->with('alertacceptfriends', "Vous avez un nouvel ami" );;
 }
 
-public function removefriends($username, Friend $friend)
+public function removefriends(Friend $friend, Request $request)
 {
    
-    $user = User::where('name', $username)->firstOrFail();
+   // $user = User::where('name', $username)->firstOrFail();
 
-    $user = Friend::where('friend_id', $user->id)->firstOrFail();
+    $user = Friend::where(['friend_id' => Auth::user()->id, 'user_id' => $request->idfriend])->firstOrFail();
     $friend = Friend::find($user->id);
+    //dd($user->id);
     $friend->delete();
+
+    $user = Friend::where(['friend_id' =>  $request->idfriend, 'user_id' => Auth::user()->id])->firstOrFail();
+    $friendremove = Friend::find($user->id);
+    //dd($user->id);
+    $friendremove->delete();
   
    
     return redirect()->back()->with('alertremovefriends', "Vous etes desormais plus amies" );
