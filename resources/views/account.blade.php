@@ -12,7 +12,7 @@
                 <div class="row">
                 <h2 class="col-9">{{ $user->name }} Account</h2>
                 <button type="button" class="btn btn-danger text-center col-3 "  style="opacity: 0.90;" data-toggle="modal" data-target="#exampleModal2">
-               Suprimer mon compte <i class="fa fa-user-times" style="font-size:18px;color:white"></i>
+                  Suprimer mon compte <i class="fa fa-user-times" style="font-size:18px;color:white"></i>
                 </button>
                 </div>
                

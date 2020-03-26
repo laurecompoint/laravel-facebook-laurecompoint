@@ -24,22 +24,38 @@
                                     {{ session('alertacceptfriends') }}
                                 </div>
                     @endif
+
+                    @if (session('alertrefuserequettes'))
+                                <div class="alert alert-success  mt-4 col-12">
+                                    {{ session('alertrefuserequettes') }}
+                                </div>
+                    @endif
                     
                     @foreach($friends as $friendrequettes) 
                    
                     <div class="alert alert-success  mb-3 col-12 justify-content-center">
                     <p>{{$friendrequettes->user->name}} vous à envoyer une demande d'amie</p>
-                    <form class="col-12" method="post" action="{{route('friends.accept')}}">
-                    <input type="hidden" name="userid" value="{{$friendrequettes->user->id}}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                    {{csrf_field()}}
                   
+
+                    <div class="row">
+                        <form class="col-6" method="post" action="{{route('friends.accept')}}">
+                        <input type="hidden" name="userid" value="{{$friendrequettes->user->id}}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        {{csrf_field()}}
                         <button type="summit" class="btn btn-primary text-white col-12 mb-3">
                        
-                            Accepte l'invitation
+                            Accepte 
                         </button>
+                        </form>
                        
-                    </form>
+                        <form method="post" class="col-6" action="{{ $friendrequettes->id }}">
+            
+                          {{ csrf_field() }}
+                          <button class="btn btn-outline-danger col-12" type="summit">Refuser</button>
+
+                        </form>
+                       
                    
+                    </div>
                     </div>
                   
                     @endforeach

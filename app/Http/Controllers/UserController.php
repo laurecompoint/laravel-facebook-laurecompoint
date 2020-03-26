@@ -143,6 +143,16 @@ public function removefriends(Friend $friend, Request $request)
    
     return redirect()->back()->with('alertremovefriends', "Vous etes desormais plus amies" );
 }
+public function refuseinvitationfriends(Request $request, Friend $friend)
+{
+
+    $friend = Friend::find($friend->id = $request->id);
+ 
+    $friend->delete();
+      
+    return redirect()->back()->with('alertrefuserequettes', "Cette demande a bien été refuser" );
+
+}
 
     
 
