@@ -47,12 +47,41 @@
                         </button>
                         </form>
                        
-                        <form method="post" class="col-6" action="{{ $friendrequettes->id }}">
-            
-                          {{ csrf_field() }}
-                          <button class="btn btn-outline-danger col-12" type="summit">Refuser</button>
+                      
+                        <div class="col-6">
+                      
+                        <button type="button" class="btn btn-outline-danger  col-12  mr-5"  data-toggle="modal" data-target="#Modalalerterefuseamitier{{ $friendrequettes->id }}">
+                              Refuser
+                         </button>  
 
-                        </form>
+                         <div class="modal fade " id="Modalalerterefuseamitier{{ $friendrequettes->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog " role="document">
+                                <div class="modal-content">
+                                        <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Supression alerte ?</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                        </div>
+                                        <div class="modal-body">
+                                        <h6>Etês vous sur de vouloir refuser cette demande d'amie de la part de : " {{$friendrequettes->user->name}} " ?</h6>
+                                       
+
+                                        </div>
+                                        <div class="modal-footer">
+                                        <form method="post" class="col-6 ml-5"  action="{{ $friendrequettes->id }}">
+            
+                                        {{ csrf_field() }}
+                                        <button class="btn text-white col-3" style="margin-left: 160px; opacity: 0.90;background-color: #660A11" type="summit">Oui</button>
+
+                                        </form>
+                                        </div>
+                                    </div>     
+                            </div>  
+                         
+                         </div>
+
+                         </div>
                        
                    
                     </div>
@@ -75,6 +104,7 @@
                         </button>
                        
                     </a>
+                   
                     @else
                     <div class="">
                         @foreach($userprofil->friendsNoAccepted as $requestfriendencour) 
@@ -124,29 +154,29 @@
                                </button>  
 
                                <div class="modal fade " id="Modalalerte{{ $friends->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog " role="document">
-                            <div class="modal-content">
-                                    <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Supression alerte ?</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                    </div>
-                                    <div class="modal-body">
-                                    <h6>Etês vous sur de vouloir supprimer votre amitier avec : " {{$friends->name}} " ?</h6>
-                                    <p>Vous ne serez plus jamais amis !!!</p>
+                                <div class="modal-dialog " role="document">
+                                <div class="modal-content">
+                                        <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Supression alerte ?</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                        </div>
+                                        <div class="modal-body">
+                                        <h6>Etês vous sur de vouloir supprimer votre amitier avec : " {{$friends->name}} " ?</h6>
+                                        <p>Vous ne serez plus jamais amis !!!</p>
 
-                                    </div>
-                                    <div class="modal-footer">
-                                    <form action="{{route('friends.remove')}}" method="POST">
-                                   
-                                    <input name="idfriend" type="hidden" value="{{ $friends->id }}"/>
-                                    {{ csrf_field() }}
-                                    <button class="btn text-white" type="summit"  style="opacity: 0.90;background-color: #660A11">Oui</button>
-                                    </form>
-                              
-                                    </div>
-                                </div>     
+                                        </div>
+                                        <div class="modal-footer">
+                                        <form action="{{route('friends.remove')}}" method="POST">
+                                    
+                                        <input name="idfriend" type="hidden" value="{{ $friends->id }}"/>
+                                        {{ csrf_field() }}
+                                        <button class="btn text-white" type="summit"  style="opacity: 0.90;background-color: #660A11">Oui</button>
+                                        </form>
+                                
+                                        </div>
+                                    </div>     
                             </div>  
                          
                          </div>
