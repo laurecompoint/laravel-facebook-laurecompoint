@@ -70,10 +70,10 @@ class User extends Authenticatable
 
     public function NoFriendYet(){
         $like = $this->friends()->where('user_id',  Auth::user()->id)->get();
-        if (!$like->isEmpty()){
-            return false;
+        if ($like->isEmpty()){
+            return true;
         }
-        return true;
+        return false;
      }
 
     public function timeline(){

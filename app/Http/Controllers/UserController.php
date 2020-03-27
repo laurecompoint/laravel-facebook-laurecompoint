@@ -122,7 +122,7 @@ public function FriendsAccept(Friend $friend, Request $request)
     $friends->friend_id = $request->userid ;
     $friends->save();
   
-    return redirect()->back()->with('alertacceptfriends', "Vous avez un nouvel ami" );;
+    return redirect()->back()->with('alertacceptfriends', "Vous avez un nouvel ami" );
 }
 
 public function removefriends(Friend $friend, Request $request)

@@ -30,6 +30,8 @@
                                     {{ session('alertrefuserequettes') }}
                                 </div>
                     @endif
+
+                  
                     
                     @foreach($friends as $friendrequettes) 
                    
@@ -119,6 +121,8 @@
                          </div>
                         @endif 
                         @endforeach
+
+                    
                     </div>
                     <div class="">
 
