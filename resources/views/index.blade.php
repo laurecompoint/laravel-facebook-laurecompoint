@@ -6,7 +6,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8 mb-3">
             <div class="card mt-5">
-                <div class="card-header">Créer une publication</div>
+                <div class="card-header">Créer une publication test</div>
 
                 <div class="card-body">
                 <form method="post" action="{{route('posts.create')}}">

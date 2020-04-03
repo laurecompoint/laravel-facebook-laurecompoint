@@ -28,7 +28,7 @@ Route::get('/{username}', 'ProfileController@show')->name('profile');
 Route::get('/add-friends/{username}', 'UserController@addfriendsRequeste')->middleware('auth');
 Route::post('/friends-accept', 'UserController@FriendsAccept')->middleware('auth')->name('friends.accept');
 Route::post('/remove-friends', 'UserController@removefriends')->middleware('auth')->name('friends.remove');
-Route::post('{id}', 'UserController@refuseinvitationfriends')->middleware('auth')->name('{id}');
+Route::post('/deleteinvite/{id}', 'UserController@refuseinvitationfriends')->middleware('auth')->name('{id}');
 
 
 Route::get('/like/{post}', 'PostController@like')->middleware('auth');

@@ -71,7 +71,7 @@
 
                                         </div>
                                         <div class="modal-footer">
-                                        <form method="post" class="col-6 ml-5"  action="{{ $friendrequettes->id }}">
+                                        <form method="post" class="col-6 ml-5"  action="deleteinvite/{{ $friendrequettes->id }}">
             
                                         {{ csrf_field() }}
                                         <button class="btn text-white col-3" style="margin-left: 160px; opacity: 0.90;background-color: #660A11" type="summit">Oui</button>
